@@ -1,0 +1,15 @@
+{
+  "name": "ACE-Step 1.5",
+  "install": "bash .cursor/install.sh",
+  "terminals": [
+    {
+      "name": "api-server",
+      "command": "export PATH=\"$HOME/.local/bin:$PATH\"; export ACESTEP_DEVICE=cpu ACESTEP_NO_INIT=true ACESTEP_INIT_LLM=false; uv run python -m uvicorn acestep.api_server:app --host 0.0.0.0 --port 8001 --log-level info",
+      "description": "ACE-Step FastAPI server on port 8001 (CPU mode, models lazy-load on first request). Probe GET /health or open /docs for the OpenAPI UI. On a GPU host, drop ACESTEP_DEVICE=cpu to enable accelerated inference."
+    }
+  ],
+  "ports": [
+    { "name": "api", "port": 8001 },
+    { "name": "gradio", "port": 7860 }
+  ]
+}
